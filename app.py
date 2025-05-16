@@ -304,67 +304,70 @@ if st.session_state.debate_started:
     # Input for user message
     user_message = st.text_area("Your argument:", height=100, placeholder="Type your argument here...", key="user_input")
     
-   # Send button
-if st.button("Send Message", use_container_width=True):
-    if user_message:
-        # Check if it's a debate-related message by analyzing the content
-        is_debate_topic = True
-        
-        # List of debate-unrelated patterns (questions about the bot, general chat, etc.)
-        non_debate_patterns = [
-            "who are you", "what's your name", "how are you", "tell me about yourself",
-            "what can you do", "help me with", "can you help", "tell me a joke",
-            "what's the weather", "what time is it", "who made you", "what are you",
-            "hello", "hi there", "good morning", "good afternoon", "good evening",
-            "tell me about", "explain", "what is", "how does", "why is"
-        ]
-        
-        user_message_lower = user_message.lower()
-        for pattern in non_debate_patterns:
-            if pattern in user_message_lower and st.session_state.topic not in user_message_lower:
-                is_debate_topic = False
-                break
-        
-        if is_debate_topic:
-            # Add user message to conversation
-            st.session_state.conversation.append({
-                "role": "user",
-                "content": user_message
-            })
+    # Send button
+    if st.button("Send Message", use_container_width=True):
+        if user_message:
+            # Check if it's a debate-related message by analyzing the content
+            is_debate_topic = True
             
-            # Show loading spinner while generating response
-            with st.spinner("Bot is thinking..."):
-                # Generate bot response
-                bot_response = debate_bot.generate_response(
-                    st.session_state.conversation,
-                    st.session_state.topic,
-                    st.session_state.difficulty,
-                    st.session_state.style
-                )
+            # List of debate-unrelated patterns (questions about the bot, general chat, etc.)
+            non_debate_patterns = [
+                "who are you", "what's your name", "how are you", "tell me about yourself",
+                "what can you do", "help me with", "can you help", "tell me a joke",
+                "what's the weather", "what time is it", "who made you", "what are you",
+                "hello", "hi there", "good morning", "good afternoon", "good evening",
+                "tell me about", "explain", "what is", "how does", "why is"
+            ]
             
-            # Add bot response to conversation
-            st.session_state.conversation.append({
-                "role": "assistant",
-                "content": bot_response
-            })
-        else:
-            # If not a debate-related message, ask for a debate topic
-            debate_reminder = f"I'm an AI Debate Bot focused on debating specific topics. We're currently discussing '{st.session_state.topic}'. Please provide an argument related to this topic to continue our debate."
+            user_message_lower = user_message.lower()
+            for pattern in non_debate_patterns:
+                if pattern in user_message_lower and st.session_state.topic not in user_message_lower:
+                    is_debate_topic = False
+                    break
             
-            # Add user message to conversation
-            st.session_state.conversation.append({
-                "role": "user",
-                "content": user_message
-            })
+            if is_debate_topic:
+                # Add user message to conversation
+                st.session_state.conversation.append({
+                    "role": "user",
+                    "content": user_message
+                })
+                
+                # Show loading spinner while generating response
+                with st.spinner("Bot is thinking..."):
+                    # Generate bot response
+                    bot_response = debate_bot.generate_response(
+                        st.session_state.conversation,
+                        st.session_state.topic,
+                        st.session_state.difficulty,
+                        st.session_state.style
+                    )
+                
+                # Add bot response to conversation
+                st.session_state.conversation.append({
+                    "role": "assistant",
+                    "content": bot_response
+                })
+            else:
+                # If not a debate-related message, ask for a debate topic
+                debate_reminder = f"I'm an AI Debate Bot focused on debating specific topics. We're currently discussing '{st.session_state.topic}'. Please provide an argument related to this topic to continue our debate."
+                
+                # Add user message to conversation
+                st.session_state.conversation.append({
+                    "role": "user",
+                    "content": user_message
+                })
+                
+                # Add bot response to conversation
+                st.session_state.conversation.append({
+                    "role": "assistant",
+                    "content": debate_reminder
+                })
             
-            # Add bot response to conversation
-            st.session_state.conversation.append({
-                "role": "assistant",
-                "content": debate_reminder
-            })
-        
-        # Rerun the app to update the UI
-        st.rerun()
+            # Clear the input
+            st.session_state.user_input = ""
+            
+            # Rerun the app to update the UI
+            st.rerun()
 
 # Footer
 st.markdown("""
