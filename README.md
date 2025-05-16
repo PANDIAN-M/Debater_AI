@@ -14,11 +14,11 @@ Debater_AI is an interactive AI-powered debate assistant built using the [Mistra
 ## Project Structure
 
 Debater_AI/
-├── .env.example         
-├── app.py              
+├── .env.example      
+├── app.py            
 ├── config.py           
 ├── debate_bot.py       
-└── run.py               
+└── run.py              
 
 
 
