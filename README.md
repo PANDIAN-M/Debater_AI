@@ -13,7 +13,8 @@ Debater_AI is an interactive AI-powered debate assistant built using the [Mistra
 
 ## Project Structure
 
- Debater_AI/
+ Debater_AI
+ 
 ├── .env.example 
 ├── app.py 
 ├── config.py  
@@ -79,6 +80,6 @@ source venv/bin/activate  # or venv\Scripts\activate on Windows
 
 **Future Enhancements**:
 
- Voice-to-text input & text-to-speech output
- Save and export debates as transcripts
- Opponent simulation (multi-agent debate)
+- Voice-to-text input & text-to-speech output
+- Save and export debates as transcripts
+- Opponent simulation (multi-agent debate)
