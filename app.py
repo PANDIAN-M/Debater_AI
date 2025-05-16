@@ -16,7 +16,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-
+# Add custom CSS
 def load_css():
     st.markdown("""
     <style>
