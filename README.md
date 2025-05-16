@@ -13,14 +13,13 @@ Debater_AI is an interactive AI-powered debate assistant built using the [Mistra
 
 ## Project Structure
 
- Debater_AI
- 
-├── .env.example 
-├── app.py 
-├── config.py  
-├── debate_bot.py  
+Debater_AI
+                
+├── .env.example         
+├── app.py               
+├── config.py            
+├── debate_bot.py        
 └── run.py  
-
 
 ## Setup Instructions
 
@@ -29,9 +28,8 @@ Debater_AI is an interactive AI-powered debate assistant built using the [Mistra
   cd Debater_AI
 
 2. **Create a Virtual Environment**:
-
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate on Windows
+  python -m venv venv
+  source venv/bin/activate  # or venv\Scripts\activate on Windows
 
 3. **Install dependencies**:
   pip install streamlit requests python-dotenv
@@ -78,7 +76,7 @@ source venv/bin/activate  # or venv\Scripts\activate on Windows
 - **Mistral AI**: Language model for generating debate responses
 - **Requests**: HTTP library for API calls
 
-**Future Enhancements**:
+## Future Enhancements:
 
 - Voice-to-text input & text-to-speech output
 - Save and export debates as transcripts
