@@ -13,7 +13,12 @@ Debater_AI is an interactive AI-powered debate assistant built using the [Mistra
 
 ## Project Structure
 
-```bash Debater_AI/ ├── .env.example # Example environment variables file ├── app.py # Main Streamlit application ├── config.py # Configuration settings ├── debate_bot.py # Debate bot implementation └── run.py # Runner script to launch the application ```
+```bash Debater_AI/
+├── .env.example 
+├── app.py 
+├── config.py  
+├── debate_bot.py  
+└── run.py  ```
 
 
 ## Setup Instructions
